@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tugas_notifikasi_fcm/pages/login_screen.dart';
@@ -11,6 +12,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  FirebaseMessaging fm = FirebaseMessaging();
+
   Future<void> initTimer() async {
     var duration = Duration(seconds: 5);
 
@@ -22,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    fm.subscribeToTopic("topicsMentoring");
     initTimer();
   }
 
